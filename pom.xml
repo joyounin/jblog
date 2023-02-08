@@ -4,6 +4,7 @@
 	<artifactId>jblog</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -21,9 +22,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>
-	
-	
+	</build>	
 	<modules>
 		<module>jblog03</module>
 	</modules>
