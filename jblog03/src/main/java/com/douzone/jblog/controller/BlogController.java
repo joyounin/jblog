@@ -61,7 +61,8 @@ public class BlogController {
 	}
 	@RequestMapping("/{userId}/admin/category")
 	public String category(@PathVariable("userId") String id, Model model) {
-		model.addAttribute("id",id);
+		
+		
 		return "blog/admin-category";
 	}
 	@RequestMapping("/{userId}/admin/write")
