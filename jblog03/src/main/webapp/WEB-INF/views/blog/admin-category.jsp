@@ -28,13 +28,13 @@
 						<td>${vo.categoryname }</td>
 						<td>${vo.count }</td>
 						<td><c:if test="${vo.count == 0 }">
-						<a href="${pageContext.request.contextPath }/jblog/${authUser.id}/admin/category/delete?no=${vo.no}">
+						<a href="${pageContext.request.contextPath }/${authUser.id}/admin/category/delete?no=${vo.no}">
 							<img src="${pageContext.request.contextPath}/assets/images/delete.jpg">
 								</a></c:if></td>
 					</tr>
 					</c:forEach>  				  
 				</table>
-      			<form action="${pageContext.request.contextPath}/jblog/${authUser.id}/admin/category/insert">
+      			<form action="${pageContext.request.contextPath}/${authUser.id}/admin/category/insert">
       			<h4 class="n-c">새로운 카테고리 추가</h4>
 		      	<table id="admin-cat-add">
 		      		<tr>

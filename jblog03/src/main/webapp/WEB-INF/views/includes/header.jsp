@@ -9,18 +9,18 @@
 				<c:choose>
 					<c:when test="${empty authUser }">
 						<li><a href="${pageContext.request.contextPath}/user/login">로그인</a></li>
-						<li><a href="${pageContext.request.contextPath}/jblog/${authUser.id}">블로그 홈</a></li>
+						<li><a href="${pageContext.request.contextPath}/${authUser.id}">블로그 홈</a></li>
 					</c:when>
 					<c:when test="${authUser.id eq vo.id }">
 						<li style="color: white">${authUser.name }님 환영합니다.</li>
-						<li><a href="${pageContext.request.contextPath}/jblog/${id }/admin/basic">블로그 관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/${id }/admin/basic">블로그 관리</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-						<li><a href="${pageContext.request.contextPath}/jblog/${authUser.id}">블로그 홈</a></li>
+						<li><a href="${pageContext.request.contextPath}/${authUser.id}">블로그 홈</a></li>
 					</c:when>
 					<c:otherwise>
 							<li style="color: white">${authUser.name }님 환영합니다.</li>
 						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
-						<li><a href="${pageContext.request.contextPath}/jblog/${authUser.id}">블로그 홈</a></li>
+						<li><a href="${pageContext.request.contextPath}/${authUser.id}">블로그 홈</a></li>
 					</c:otherwise>
 				</c:choose>
 			</ul>

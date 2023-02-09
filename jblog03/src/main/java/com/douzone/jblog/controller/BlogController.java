@@ -20,7 +20,7 @@ import com.douzone.jblog.vo.BlogVo;
 import com.douzone.jblog.vo.CategoryVo;
 import com.douzone.jblog.vo.PostVo;
 
-@RequestMapping("/jblog/{userId}")
+@RequestMapping("/{userId:(?!assets).*}")
 @Controller
 public class BlogController {
 	@Autowired
@@ -85,7 +85,7 @@ public class BlogController {
 		model.addAttribute("vo", vo);
 		model.addAttribute("url", url);
 		
-		return "redirect:/jblog/" + id + "/admin/basic";
+		return "redirect:/" + id + "/admin/basic";
 	}
 	
 	@RequestMapping("/admin/category")
@@ -107,7 +107,7 @@ public class BlogController {
 		categoryService.addcategory(name, id);
 		
 
-		return "redirect:/jblog/" + id + "/admin/category";
+		return "redirect:/" + id + "/admin/category";
 	}
 	
 	@RequestMapping(value="/admin/write", method = RequestMethod.GET)
@@ -135,7 +135,7 @@ public class BlogController {
 		
 		
 		
-		return "redirect:/jblog/" + id + "/admin/category";
+		return "redirect:/" + id + "/admin/category";
 	}
 	
 	@RequestMapping("/admin/category/delete")
@@ -147,7 +147,7 @@ public class BlogController {
 		model.addAttribute("id",id);
 		categoryService.delete(no);
 		
-		return "redirect:/jblog/" + id + "/admin/category";
+		return "redirect:/" + id + "/admin/category";
 	}
 	
 	
