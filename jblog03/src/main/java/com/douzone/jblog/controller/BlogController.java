@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.douzone.jblog.security.Auth;
 import com.douzone.jblog.service.BlogService;
 import com.douzone.jblog.service.CategoryService;
 import com.douzone.jblog.service.FileUploadService;
@@ -63,7 +64,7 @@ public class BlogController {
 		return "blog/main";
 	}
 	
-	
+	@Auth
 	@RequestMapping("/admin/basic")
 	public String basic(@PathVariable("userId") String id, Model model) {
 		BlogVo vo = blogService.getblog(id);
@@ -71,6 +72,7 @@ public class BlogController {
 		return "blog/admin-basic";
 	}
 	
+	@Auth
 	@RequestMapping("/admin/basic/update")
 	public String update(@PathVariable("userId") String id,
 						@RequestParam("file") MultipartFile file, BlogVo vo, Model model) {
@@ -87,7 +89,7 @@ public class BlogController {
 		
 		return "redirect:/" + id + "/admin/basic";
 	}
-	
+	@Auth
 	@RequestMapping("/admin/category")
 	public String category(@PathVariable("userId") String id, Model model) {
 		BlogVo vo = blogService.getblog(id);
@@ -99,6 +101,7 @@ public class BlogController {
 		model.addAttribute("list", list);
 		return "blog/admin-category";
 	}
+	@Auth
 	@RequestMapping("/admin/category/insert")
 	public String category(@PathVariable("userId") String id, Model model,
 							@RequestParam("name") String name) {	
@@ -109,7 +112,7 @@ public class BlogController {
 
 		return "redirect:/" + id + "/admin/category";
 	}
-	
+	@Auth
 	@RequestMapping(value="/admin/write", method = RequestMethod.GET)
 	public String write(@PathVariable("userId") String id, Model model) {
 		BlogVo vo = blogService.getblog(id);	
@@ -120,7 +123,7 @@ public class BlogController {
 		
 		return "blog/admin-write";
 	}
-	
+	@Auth
 	@RequestMapping(value="/admin/write", method=RequestMethod.POST)
 	public String write(@PathVariable("userId") String id, 
 						@RequestParam("title") String title,
@@ -137,7 +140,7 @@ public class BlogController {
 		
 		return "redirect:/" + id + "/admin/category";
 	}
-	
+	@Auth
 	@RequestMapping("/admin/category/delete")
 	public String delete(@PathVariable("userId") String id,
 						@RequestParam("no") Long no,  Model model) {
