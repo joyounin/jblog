@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="category">
-	<select id="findAll" resultType="categoryvo">
-		<![CDATA[
-			select no, categoryname, id 
- 			  from category 
-		  order by no desc
-		]]>
-	</select>
 	<select id="findById" parameterType="string" resultType="categoryvo">
 		<![CDATA[
 			select no, categoryname, id 
  			  from category 
-			 where id='${value }
+			 where id= '${value }'
+		]]>
+	</select>
+
+	<select id="findByNoAndTitleAndCount" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+			select no, categoryname, (select count(*) from post where category_no = c.no) as count 
+			  from category c 
+			 where id = '${value }'
 		]]>
 	</select>
 	
@@ -22,5 +23,18 @@
 			values(null, "기본카테고리", #{id })
 		]]>
 	</insert>
+	
+	<insert id="addcategory" parameterType="map">
+		<![CDATA[
+			insert into category values(null, #{categoryname }, #{id });
+		]]>
+	</insert>
+	
+	<delete id="delete" parameterType="long">
+		<![CDATA[
+			delete from category where no=#{no }
+		]]>
+	</delete>
+	
 
 </mapper>

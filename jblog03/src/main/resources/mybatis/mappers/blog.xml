@@ -11,7 +11,7 @@
 	<insert id="insert" parameterType="blogvo">
 		<![CDATA[
 			insert into blog 
-			values(#{id }, "블로그입니다.", "/assets/upload-images/202317359720.png")
+			values(#{id }, "블로그입니다.", "/assets/upload-images/202319913750.png")
 		]]>
 	</insert>
 	<update id="update" parameterType="blogvo">

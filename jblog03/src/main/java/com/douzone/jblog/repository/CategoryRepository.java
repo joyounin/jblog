@@ -1,6 +1,8 @@
 package com.douzone.jblog.repository;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,12 +22,29 @@ public class CategoryRepository {
 		
 	}
 
-	public CategoryVo findById(String id) {
-		return sqlSession.selectOne("category.findById", id);
+	public List<CategoryVo> findById(String id) {
+		return sqlSession.selectList("category.findById", id);
 	}
 
-	public List<CategoryVo> findAll() {
-		return sqlSession.selectList("category.findAll");
+	public List<CategoryVo> findByNoAndTitleAndCount(String id) {
+		return sqlSession.selectList("category.findByNoAndTitleAndCount", id);
+	}
+
+	public CategoryVo getcategoryById(String id) {
+		return sqlSession.selectOne("category.getcategoryById", id);
+	}
+
+	public void addcategory(String name, String id) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("categoryname", name);
+		map.put("id", id);
+		sqlSession.insert("category.addcategory", map);
+		
+	}
+
+	public void delete(Long no) {
+		sqlSession.delete("category.delete", no);
+		
 	}
 
 }

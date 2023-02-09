@@ -3,7 +3,7 @@
 <mapper namespace="user">
 	<select id="findByIdPassword" parameterType="map" resultType="uservo">
 		<![CDATA[
-			select id, password 
+			select id, password, name
  			  from user 
 			 where id=#{id }
    			   and password = password(#{password })
