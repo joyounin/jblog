@@ -23,9 +23,9 @@
 		]]>
 	</select>
 	
-	<select id="basic" parameterType="long" resultType="postvo">
+	<select id="basic" parameterType="long" resultType="long">
 		<![CDATA[
-			select no, title, contents, reg_date, category_no as categoryno
+			select no
 			  from post
 			 where category_no = #{no }
 			 limit 0,1

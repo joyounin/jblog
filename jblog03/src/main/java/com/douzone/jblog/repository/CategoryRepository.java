@@ -47,7 +47,7 @@ public class CategoryRepository {
 		
 	}
 
-	public CategoryVo basic(String id) {
+	public Long basic(String id) {
 		return sqlSession.selectOne("category.basic", id);
 	}
 

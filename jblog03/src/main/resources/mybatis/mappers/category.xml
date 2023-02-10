@@ -35,11 +35,11 @@
 		]]>
 	</delete>
 	
-	<select id="basic" parameterType="string" resultType="categoryvo">
+	<select id="basic" parameterType="string" resultType="long">
 		<![CDATA[
-		select no, categoryname, id
+		select no
 		  from category
-		 where id = '${value }'
+		 where id = #{id }
 		 limit 0,1
 		]]>
 	</select>
