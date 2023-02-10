@@ -24,7 +24,7 @@
 		      		</tr>
 		      		<c:forEach items="${list }" var="vo" varStatus="status">
 					<tr>
-						<td>${vo.no }</td>
+						<td>${status.index + 1 }</td>
 						<td>${vo.categoryname }</td>
 						<td>${vo.count }</td>
 						<td><c:if test="${vo.count == 0 }">

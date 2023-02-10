@@ -51,7 +51,12 @@ public class BlogController {
 		}
 		
 		BlogVo blogvo = blogService.getblog(id);
+
 		List<CategoryVo> list = categoryService.getcategory(id);
+		
+		if(blogvo==null) {
+			return "error/404";
+		} 
 		
 		List<PostVo> posttitlelist = postService.getpost(categoryno);
 		List<PostVo> postcontentslist = postService.getTitleAndContentspost(categoryno, postno);

@@ -10,7 +10,6 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.HandlerMapping;
 
 import com.douzone.jblog.vo.UserVo;
-import com.douzone.mysite.security.Auth;
 
 public class AuthInterceptor implements HandlerInterceptor {
 	
