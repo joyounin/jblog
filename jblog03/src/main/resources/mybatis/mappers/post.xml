@@ -22,4 +22,14 @@
 			 where category_no = #{categoryno } and no=#{no }
 		]]>
 	</select>
+	
+	<select id="basic" parameterType="long" resultType="postvo">
+		<![CDATA[
+			select no, title, contents, reg_date, category_no as categoryno
+			  from post
+			 where category_no = #{no }
+			 limit 0,1
+		]]>
+	</select>
+	
 </mapper>

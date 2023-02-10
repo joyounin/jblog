@@ -38,5 +38,9 @@ public class PostRepository {
 		map.put("no", postno);
 		return sqlSession.selectList("post.getTitleAndContentspost", map);
 	}
+
+	public PostVo basic(Long no) {
+		return sqlSession.selectOne("post.basic", no);
+	}
 	
 }

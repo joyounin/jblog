@@ -39,5 +39,9 @@ public class CategoryService {
 		categoryRepository.delete(no);
 	}
 
+	public CategoryVo getbasic(String id) {
+		return categoryRepository.basic(id);
+	}
+
 	
 }

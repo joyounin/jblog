@@ -14,5 +14,6 @@
 		죄송합니다. 오류가 발생했습니다.<br>
 		잠시 후, 다시 시도해 주세요.
 	</p>
+	<a href="${pageContext.request.contextPath }">메인으로 돌아가기</a>
 </body>
 </html>

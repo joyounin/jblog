@@ -47,4 +47,8 @@ public class CategoryRepository {
 		
 	}
 
+	public CategoryVo basic(String id) {
+		return sqlSession.selectOne("category.basic", id);
+	}
+
 }

@@ -16,7 +16,6 @@
 			 where id = '${value }'
 		]]>
 	</select>
-	
 	<insert id="insert" parameterType="categoryvo">
 		<![CDATA[
 			insert into category 
@@ -36,5 +35,13 @@
 		]]>
 	</delete>
 	
+	<select id="basic" parameterType="string" resultType="categoryvo">
+		<![CDATA[
+		select no, categoryname, id
+		  from category
+		 where id = '${value }'
+		 limit 0,1
+		]]>
+	</select>
 
 </mapper>

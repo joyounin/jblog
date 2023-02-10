@@ -42,28 +42,46 @@ public class BlogController {
 						Model model) {
 		Long categoryno = 0L;
 		Long postno = 0L;
+		CategoryVo cbasic = null;
+		PostVo pbasic = null;
 		
-		if(pathNo2.isPresent()) {
+		// 주소창에 주소값이 널이면 categoryno, postno에 넣어준다.
+		if(pathNo1.isEmpty() && pathNo2.isEmpty()) {
+			cbasic = categoryService.getbasic(id);
+			categoryno = cbasic.getNo();
+			pbasic = postService.getbasic(cbasic.getNo());
+			postno = pbasic.getNo();
+		} else if (pathNo2.isEmpty()) {
+			categoryno = pathNo1.get();
+			pbasic = postService.getbasic(categoryno);
+			if(pbasic == null) {
+				postno = 0L;
+			} else {
+				postno = pbasic.getNo();				
+			}
+		} else {
 			categoryno = pathNo1.get();
 			postno = pathNo2.get();
-		} else if (pathNo1.isPresent()){
-			categoryno = pathNo1.get();
 		}
 		
+		// 없는 블로그 주소를 넣으면 404 페이지로 이동
 		BlogVo blogvo = blogService.getblog(id);
-
-		List<CategoryVo> list = categoryService.getcategory(id);
-		
 		if(blogvo==null) {
 			return "error/404";
 		} 
 		
+		// 카테고리와 글을 보여주기 위해 list로 받아온다.
+		List<CategoryVo> list = categoryService.getcategory(id);
 		List<PostVo> posttitlelist = postService.getpost(categoryno);
 		List<PostVo> postcontentslist = postService.getTitleAndContentspost(categoryno, postno);
+		
+		// 뿌려준다.
 		model.addAttribute("vo", blogvo);
 		model.addAttribute("list", list);
 		model.addAttribute("posttitlelist", posttitlelist);
 		model.addAttribute("postcontentslist", postcontentslist);
+		model.addAttribute("categoryno", categoryno);
+		model.addAttribute("postno", postno);
 		model.addAttribute("id", id);
 		
 		return "blog/main";

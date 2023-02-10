@@ -31,6 +31,10 @@ public class PostService {
 		return postRepository.getTitleAndContentspost(categoryno, postno);
 	}
 
+	public PostVo getbasic(Long no) {
+		return postRepository.basic(no);
+	}
+
 
 	
 }
