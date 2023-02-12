@@ -44,24 +44,6 @@ public class BlogController {
 		Long postno = 0L;
 		
 		// 주소창에 주소값이 널이면 categoryno, postno에 넣어준다.
-//		아무것도 모를때의 코드... 이건 실행은되는데 모른척해주세요...죄송합니다 오늘 한번더 느낍니다.. 더 노력하겠습니다...
-//		if(pathNo1.isEmpty() && pathNo2.isEmpty()) {
-//			cbasic = categoryService.getbasic(id);
-//			categoryno = cbasic.getNo();
-//			pbasic = postService.getbasic(cbasic.getNo());
-//			postno = pbasic.getNo();
-//		} else if (pathNo2.isEmpty()) {
-//			categoryno = pathNo1.get();
-//			pbasic = postService.getbasic(categoryno);
-//			if(pbasic == null) {
-//				postno = 0L;
-//			} else {
-//				postno = pbasic.getNo();				
-//			}
-//		} else {
-//			categoryno = pathNo1.get();
-//			postno = pathNo2.get();
-//		}
 		if(pathNo2.isPresent()) {
 			categoryno = pathNo1.get();
 			postno = pathNo2.get();
