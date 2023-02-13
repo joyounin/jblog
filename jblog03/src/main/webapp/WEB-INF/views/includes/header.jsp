@@ -13,7 +13,7 @@
 					</c:when>
 					<c:when test="${authUser.id eq vo.id }">
 						<li style="color: white">${authUser.name }님 환영합니다.</li>
-						<li><a href="${pageContext.request.contextPath}/${id }/admin/basic">블로그 관리</a></li>
+						<li><a href="${pageContext.request.contextPath}/${authUser.id }/admin/basic">블로그 관리</a></li>
 						<li><a href="${pageContext.request.contextPath}/user/logout">로그아웃</a></li>
 						<li><a href="${pageContext.request.contextPath}/${authUser.id}">블로그 홈</a></li>
 					</c:when>
