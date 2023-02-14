@@ -3,9 +3,13 @@ package com.douzone.jblog.controller;
 import java.util.List;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -56,8 +60,8 @@ public class BlogController {
 		}
 		
 		// 없는 블로그 주소를 넣으면 404 페이지로 이동
-		BlogVo blogvo = blogService.getblog(id);
-		if(blogvo==null) {
+		BlogVo vo = blogService.getblog(id);
+		if(vo==null) {
 			return "error/404";
 		} 
 		
@@ -67,7 +71,7 @@ public class BlogController {
 		List<PostVo> postcontentslist = postService.getTitleAndContentspost(categoryno, postno);
 		
 		// 뿌려준다.
-		model.addAttribute("vo", blogvo);
+		model.addAttribute("vo", vo);
 		model.addAttribute("list", list);
 		model.addAttribute("posttitlelist", posttitlelist);
 		model.addAttribute("postcontentslist", postcontentslist);
@@ -105,7 +109,7 @@ public class BlogController {
 	}
 	@Auth
 	@RequestMapping("/admin/category")
-	public String category(@PathVariable("userId") String id, Model model) {
+	public String category(@PathVariable("userId") String id,@ModelAttribute CategoryVo categoryvo, Model model) {
 		BlogVo vo = blogService.getblog(id);
 		
 		List<CategoryVo> list = categoryService.getByNoAndTitleAndCount(id);
@@ -117,8 +121,19 @@ public class BlogController {
 	}
 	@Auth
 	@RequestMapping("/admin/category/insert")
-	public String category(@PathVariable("userId") String id, Model model,
-							@RequestParam("name") String name) {	
+	public String category(@PathVariable("userId") String id, 
+							@RequestParam("categoryname") String name,
+							@ModelAttribute @Valid CategoryVo categoryvo,			
+							BindingResult result,
+							Model model) {	
+		if(result.hasErrors()) {
+			model.addAllAttributes(result.getModel());
+			BlogVo vo = blogService.getblog(id);
+			List<CategoryVo> list = categoryService.getByNoAndTitleAndCount(id);
+			model.addAttribute("vo", vo);
+			model.addAttribute("list", list);
+			return "blog/admin-category";
+		}
 		BlogVo vo = blogService.getblog(id);
 		model.addAttribute("vo", vo);
 		categoryService.addcategory(name, id);
@@ -128,7 +143,7 @@ public class BlogController {
 	}
 	@Auth
 	@RequestMapping(value="/admin/write", method = RequestMethod.GET)
-	public String write(@PathVariable("userId") String id, Model model) {
+	public String write(@PathVariable("userId") String id,@ModelAttribute PostVo postvo, Model model) {
 		BlogVo vo = blogService.getblog(id);	
 		model.addAttribute("vo", vo);
 		model.addAttribute("id",id);
@@ -143,7 +158,18 @@ public class BlogController {
 						@RequestParam("title") String title,
 						@RequestParam("contents") String contents,
 						@RequestParam("category") Long no,
+						@ModelAttribute @Valid PostVo postvo,
+						BindingResult result,
 						Model model) {
+		if(result.hasErrors()) {
+			model.addAllAttributes(result.getModel());
+			BlogVo vo = blogService.getblog(id);	
+			model.addAttribute("vo", vo);
+			model.addAttribute("id",id);
+			List<CategoryVo> list = categoryService.getcategory(id);
+			model.addAttribute("list", list);
+			return "blog/admin-write";
+		}
 		System.out.println(no);
 		BlogVo vo = blogService.getblog(id);
 		model.addAttribute("vo", vo);
@@ -157,9 +183,11 @@ public class BlogController {
 	@Auth
 	@RequestMapping("/admin/category/delete")
 	public String delete(@PathVariable("userId") String id,
-						@RequestParam("no") Long no,  Model model) {
+						@RequestParam("no") Long no,  
+						@ModelAttribute @Valid BlogVo vo,
+						Model model) {
 		System.out.println(no);
-		BlogVo vo = blogService.getblog(id);
+		vo = blogService.getblog(id);
 		model.addAttribute("vo", vo);
 		model.addAttribute("id",id);
 		categoryService.delete(no);

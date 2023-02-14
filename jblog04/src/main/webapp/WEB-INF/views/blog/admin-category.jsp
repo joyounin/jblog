@@ -1,8 +1,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <!doctype html>
@@ -41,21 +41,15 @@
 						</tr>
 					</c:forEach>
 				</table>
-				<form:form
-					action="${pageContext.request.contextPath}/${authUser.id}/admin/category/insert">
+				<form:form modelAttribute="categoryVo" action="${pageContext.request.contextPath}/${authUser.id}/admin/category/insert" >
 					<h4 class="n-c">새로운 카테고리 추가</h4>
 					<table id="admin-cat-add">
 						<tr>
 							<td class="t">카테고리명</td>
-							<td><input type="text" name="name"></td>
-							<spring:hasBindErrors name="userVo">
-								<c:if test="${errors.hasFieldErrors('name') }">
-									<p style="color: #f00; text-align: left; padding: 0">
-										<spring:message
-											code='${errors.getFieldError("name").codes[0] }' />
-									</p>
-								</c:if>
-							</spring:hasBindErrors>
+							<td><form:input path="categoryname" /></td>
+							<td><p style="color: #f00; text-align: left; padding: 0">
+								<form:errors path="categoryname" />
+							</p></td>
 						</tr>
 						<tr>
 							<td class="s">&nbsp;</td>
