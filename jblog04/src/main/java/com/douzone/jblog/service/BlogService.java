@@ -9,6 +9,7 @@ import com.douzone.jblog.vo.UserVo;
 
 @Service
 public class BlogService {
+	
 	@Autowired
 	private BlogRepository blogRepository;
 

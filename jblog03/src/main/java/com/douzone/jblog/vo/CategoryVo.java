@@ -1,7 +1,10 @@
 package com.douzone.jblog.vo;
 
+import javax.validation.constraints.NotEmpty;
+
 public class CategoryVo {
 	private Long no;
+	@NotEmpty
 	private String categoryname;
 	private String id;
 	private Long count;

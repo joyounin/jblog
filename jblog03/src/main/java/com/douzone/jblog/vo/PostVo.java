@@ -1,8 +1,12 @@
 package com.douzone.jblog.vo;
 
+import javax.validation.constraints.NotEmpty;
+
 public class PostVo {
 	private Long no;
+	@NotEmpty
 	private String title;
+	@NotEmpty
 	private String contents;
 	private String reg_date;
 	private Long categoryno;
