@@ -5,7 +5,7 @@
 		<artifactId>jblog</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
-	<artifactId>jblog03</artifactId>
+	<artifactId>jblog04</artifactId>
 	<packaging>war</packaging>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -125,7 +125,7 @@
 		</dependency>
 	</dependencies>
 	<build>
-		<finalName>jblog03</finalName>
+		<finalName>jblog04</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
