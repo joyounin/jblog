@@ -33,7 +33,7 @@ public class GlobalExceptionHandler {
 		// 3. 사과 페이지(3. 정상종료)
 
 		ModelAndView mav = new ModelAndView();
-		mav.addObject("exception", "죄송합니다 다시 접속해주세요.");
+		mav.addObject("exception", errors.toString());
 		mav.setViewName("error/exception");
 		return mav;
 	}
