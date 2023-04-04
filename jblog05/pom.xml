@@ -130,7 +130,7 @@
 				<version>2.2</version>
 				<configuration>
 					<url>${tomcat.deploy.url}</url>
-					<server>tomcat-douzone2023</server>
+					
 				</configuration>
 			</plugin>
 		</plugins>
